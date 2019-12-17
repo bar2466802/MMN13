@@ -54,14 +54,16 @@ class DaryHeap
         return d * i + k;
     }
  
-    /** Function to insert element */
+    /** Function to insert element 
+     * 
+     * @param x - the key to be added
+     * */
     public void insert(int x)
     {
-        if (isFull( ) )
-            throw new NoSuchElementException("Overflow Exception");
+        this.heapSize++; //Increase the heap size
         /** Percolate up **/
-        heap[heapSize++] = x;
-        heapifyUp(heapSize - 1);
+        heap[heapSize] = x; //Set the new element with the given key
+        heapifyUp(heapSize - 1);//Correct the heap after the new addition
     }
  
     /** Function to find least element **/
