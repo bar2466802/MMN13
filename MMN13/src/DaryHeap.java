@@ -55,7 +55,7 @@ class DaryHeap
     }
  
     /** Function to insert element 
-     * 
+     * calls heapifyUp() once so Time complexity: O(logkn).
      * @param x - the key to be added
      * */
     public void insert(int x)
@@ -74,7 +74,11 @@ class DaryHeap
         return heap[0];
     }
  
-    /** Function to delete element at an index **/
+    /** Function to delete element at an index 
+     * calls heapifyDown() once, its complexity O(k logkn)
+     * @param ind - index of element to be deleted
+     * 
+     * **/
     public int delete(int ind)
     {
         if (isEmpty() )
