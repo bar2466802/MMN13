@@ -95,7 +95,7 @@ class DaryHeap {
 		int keyItem = heap[ind];
 		heap[ind] = heap[heapSize - 1];
 		heapSize--;
-		heapifyDown(ind);
+		maxHeapify(ind);;
 		return keyItem;
 	}
 
