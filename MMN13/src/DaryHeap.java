@@ -124,8 +124,16 @@ class DaryHeap {
 			heap[largest] = temp;
 			
 			maxHeapify(largest);
+		}	
+	}
+	
+	/**
+	 * Function to build the d-heap
+	 */
+	public void buildMaxHeap() {
+		for (int i = heapSize / d; i > 0; i--) {
+			maxHeapify(i);
 		}
-		
 	}
 
 	/**
