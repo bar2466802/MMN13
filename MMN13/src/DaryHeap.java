@@ -13,7 +13,9 @@ import java.lang.Error;
 class DaryHeap {
 	/** The number of children each node has **/
 	private int d;
+	/** The Size of the heap **/
 	private int heapSize;
+	/** The D-ray heap itself **/
 	private int[] heap;
 
 	/**
@@ -72,12 +74,13 @@ class DaryHeap {
 	 * 
 	 * @param i - the index to be changed
 	 * @param key - the key to be added
+	 * @exception IndexOutOfBoundsException when i is not in D-ray-heap
 	 */
 	public void increaseKey(int i, int key) {
 		if (i < 0 || i > this.heapSize) {
 			throw new IndexOutOfBoundsException("Not a valid index");
 		}
-		if (this.heap[i] > key) {
+		if (this.heap[i] < key) {
 			this.heap[i] = key;
 			heapifyUp(i);// Correct the heap after the key update
 		}
@@ -89,8 +92,9 @@ class DaryHeap {
 	 * Function to delete element at an index calls heapifyDown() once, its
 	 * complexity O(k logkn)
 	 * 
-	 * @param ind - index of element to be deleted
-	 * @return key of deleted item, if heap is empty then raising an error
+	 * @param i - index of element to be deleted
+	 * @return key of deleted item,
+	 * @exception NoSuchElementException if heap is empty then raising an error
 	 **/
 	public int delete(int i) {
 		if (isEmpty()) {
@@ -116,9 +120,11 @@ class DaryHeap {
 
 		// Check if one of i's children is bigger then him and saves the largest one's
 		// index
-		for (int j = 1; j <= d; j++) {
-			if (kthChild(i, j) <= heapSize && heap[kthChild(i, j)] > heap[i]) {
-				largest = heap[kthChild(i, j)];
+		for (int j = 0; j < d; j++) {
+			if (kthChild(i, j) <= heapSize && 
+				heap[kthChild(i, j)] > heap[i] && 
+				heap[kthChild(i, j)] > heap[largest]) {
+				largest = kthChild(i, j);
 			}
 		}
 
@@ -139,6 +145,17 @@ class DaryHeap {
 		for (int i = Math.floorDiv(heapSize , d); i > 0; i--) {
 			maxHeapify(i);
 		}
+	}
+	
+
+	/**
+	 * Function to print heap
+	 */
+	public void printHeap() {
+		System.out.print("\nHeap = ");
+		for (int i = 0; i < heapSize; i++)
+			System.out.print(heap[i] + " ");
+		System.out.println();
 	}
 
 	/**
@@ -174,7 +191,7 @@ class DaryHeap {
 	/**
 	 * Function heapifyUp
 	 * 
-	 * @param childInd
+	 * @param i This is the index to heapify
 	 */
 	private void heapifyUp(int i) {
 		int tmp;
@@ -187,15 +204,5 @@ class DaryHeap {
 			
 			i = parent(i);
 		}	
-	}
-
-	/**
-	 * Function to print heap
-	 */
-	public void printHeap() {
-		System.out.print("\nHeap = ");
-		for (int i = 0; i < heapSize; i++)
-			System.out.print(heap[i] + " ");
-		System.out.println();
 	}
 }
