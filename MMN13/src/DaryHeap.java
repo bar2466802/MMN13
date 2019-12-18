@@ -87,7 +87,7 @@ class DaryHeap {
 	 * complexity O(k logkn)
 	 * 
 	 * @param ind - index of element to be deleted
-	 * 
+	 * @return key of deleted item, if heap is empty then raising an error
 	 **/
 	public int delete(int ind) {
 		if (isEmpty())
