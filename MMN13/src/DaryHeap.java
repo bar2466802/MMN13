@@ -32,7 +32,16 @@ class DaryHeap {
 	 * 
 	 */
 	public int extractMax() {
-		return 1;
+		if (heapSize < 1) {
+			throw new NoSuchElementException("Empty D-ray");
+		}
+		
+		int max = heap[1];
+		heap[1] = heap[heapSize];
+		heapSize--;
+		maxHeapify(1);
+		
+		return max;
 	}
 
 	// 2- INSERT
