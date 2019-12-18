@@ -24,10 +24,9 @@ class DaryHeap {
 	 * @param capacity
 	 * @param numChild
 	 */
-	public DaryHeap(int[] arr, int heapSize, int d) {
-		this.heapSize = 0;
+	public DaryHeap(int[] arr, int d) {
+		this.heapSize = arr.length;
 		this.d = d;
-		this.heap = new int[heapSize];
 		this.heap = arr;
 		this.buildMaxHeap();
 	}
