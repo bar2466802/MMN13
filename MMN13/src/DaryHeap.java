@@ -16,7 +16,8 @@ class DaryHeap {
 	private int heapSize;
 	private int[] heap;
 
-	/** Constructor
+	/**
+	 * Constructor
 	 * 
 	 * @param capacity
 	 * @param numChild
@@ -32,7 +33,7 @@ class DaryHeap {
 
 	// 1- EXTRACT-MAX
 
-	/**			
+	/**
 	 * Function to Extract the largest value and keep the D-ray as it should be
 	 * 
 	 * @exception NoSuchElementException for empty heap
@@ -41,12 +42,12 @@ class DaryHeap {
 		if (isEmpty()) {
 			throw new NoSuchElementException("Empty D-ray");
 		}
-		
+
 		int max = heap[1];
 		heap[1] = heap[heapSize];
 		heapSize--;
 		maxHeapify(1);
-		
+
 		return max;
 	}
 
@@ -66,7 +67,7 @@ class DaryHeap {
 	}
 
 	// 3- INCREASE-KEY
-	
+
 	/**
 	 * Function to insert element calls heapifyUp() once so Time complexity:
 	 * O(logkn).
@@ -98,7 +99,8 @@ class DaryHeap {
 		int keyItem = heap[ind];
 		heap[ind] = heap[heapSize - 1];
 		heapSize--;
-		maxHeapify(ind);;
+		maxHeapify(ind);
+		;
 		return keyItem;
 	}
 
@@ -110,31 +112,32 @@ class DaryHeap {
 	 * @param i This is the index from it the D-ary will be sorted
 	 */
 	public void maxHeapify(int i) {
-		
+
 		int largest = i;
-		 
-		// Check if one of i's children is bigger then him and saves the largest one's index
-		for (int j = 1; j <= d; j++) {	
+
+		// Check if one of i's children is bigger then him and saves the largest one's
+		// index
+		for (int j = 1; j <= d; j++) {
 			if (kthChild(i, j) <= heapSize && heap[kthChild(i, j)] > heap[i]) {
 				largest = heap[kthChild(i, j)];
 			}
 		}
-		
+
 		if (largest != i) {
 			// exchange
 			int temp = heap[i];
 			heap[i] = heap[largest];
 			heap[largest] = temp;
-			
+
 			maxHeapify(largest);
-		}	
+		}
 	}
-	
+
 	/**
 	 * Function to build the d-heap
 	 */
 	public void buildMaxHeap() {
-		for (int i = (int)Math.floor((heapSize / d)); i > 0; i--) {
+		for (int i = (int) Math.floor((heapSize / d)); i > 0; i--) {
 			maxHeapify(i);
 		}
 	}
@@ -149,30 +152,6 @@ class DaryHeap {
 	}
 
 	/**
-	 * Check if heap is full
-	 * 
-	 * @return True if the heap is full, false otherwise
-	 */
-	public boolean isFull() {
-		return heapSize == heap.length;
-	}
-
-	/** Clear heap */
-	public void clear() {
-		heapSize = 0;
-	}
-
-	/**
-	 * Function to get index parent of i
-	 * 
-	 * @param
-	 * @return
-	 */
-	private int parent(int i) {
-		return (i - 1) / d;
-	}
-
-	/**
 	 * Function to get index of k-th child of i
 	 * 
 	 * @param i This is the index of the parent
@@ -184,14 +163,11 @@ class DaryHeap {
 		return d * i - d + 1 + k;
 	}
 
-	/** Function to find least element **/
-	public int findMin() {
-		if (isEmpty())
-			throw new NoSuchElementException("Underflow Exception");
-		return heap[0];
-	}
-
-	/** Function heapifyUp **/
+	/**
+	 * Function heapifyUp
+	 * 
+	 * @param childInd
+	 */
 	private void heapifyUp(int childInd) {
 		int tmp = heap[childInd];
 		while (childInd > 0 && tmp < heap[parent(childInd)]) {
@@ -204,6 +180,7 @@ class DaryHeap {
 	/**
 	 * Function heapifyDown
 	 * 
+	 * @param ind
 	 */
 	private void heapifyDown(int ind) {
 		int child;
@@ -219,20 +196,9 @@ class DaryHeap {
 		heap[ind] = tmp;
 	}
 
-	/** Function to get smallest child **/
-	private int minChild(int ind) {
-		int bestChild = kthChild(ind, 1);
-		int k = 2;
-		int pos = kthChild(ind, k);
-		while ((k <= d) && (pos < heapSize)) {
-			if (heap[pos] < heap[bestChild])
-				bestChild = pos;
-			pos = kthChild(ind, k++);
-		}
-		return bestChild;
-	}
-
-	/** Function to print heap **/
+	/**
+	 * Function to print heap
+	 */
 	public void printHeap() {
 		System.out.print("\nHeap = ");
 		for (int i = 0; i < heapSize; i++)
