@@ -70,7 +70,7 @@ class DaryHeap {
 	 * @param x - the key to be added
 	 */
 	public void increaseKey(int index, int key) {
-		if (index < 0) {
+		if (index < 0 || index > this.heapSize) {
 			throw new IndexOutOfBoundsException("Not a valid index");
 		}
 		if (this.heap[index] > key) {
