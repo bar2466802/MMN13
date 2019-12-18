@@ -108,7 +108,7 @@ class DaryHeap {
 	 */
 	public void maxHeapify(int i) {
 		
-		private int largest = i;
+		int largest = i;
 		 
 		// Check if one of i's children is bigger then him and saves the largest one's index
 		for (int j = 0; j < children.length; j++) {	
@@ -119,7 +119,7 @@ class DaryHeap {
 		
 		if (largest != i) {
 			// exchange
-			private int temp = heap[i];
+			int temp = heap[i];
 			heap[i] = heap[largest];
 			heap[largest] = temp;
 			
