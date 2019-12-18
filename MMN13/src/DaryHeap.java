@@ -71,9 +71,7 @@ class DaryHeap {
 		if (index < 0) {
 			throw new IndexOutOfBoundsException("Not a valid index");
 		}
-		if (this.heap[index] < key) {
-			System.out.println("Error: new key is smaller than current key");
-		} else {
+		if (this.heap[index] > key) {
 			this.heap[index] = key;
 			heapifyUp(index);// Correct the heap after the key update
 		}
