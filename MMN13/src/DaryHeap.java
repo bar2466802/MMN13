@@ -152,7 +152,7 @@ class DaryHeap {
 	 * Function to print heap
 	 */
 	public void printHeap() {
-		System.out.println("\nHeap = " + heap[1]);	
+		System.out.println("\nHeap = " + heap[0]);	
 		int heapHeight = Height();
 		int curr = 1;
 		
