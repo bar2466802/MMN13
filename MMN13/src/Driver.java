@@ -40,7 +40,7 @@ public class Driver {
 			}
 		}
 
-		DaryHeap dh = new DaryHeap(heapSize, scan.nextInt());
+		//DaryHeap dh = new DaryHeap(heapSize, scan.nextInt());
 	}
 
 }
