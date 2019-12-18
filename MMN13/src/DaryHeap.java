@@ -46,7 +46,7 @@ class DaryHeap {
 		}
 
 		int max = heap[0];
-		heap[1] = heap[heapSize - 1];
+		heap[0] = heap[heapSize - 1];
 		heapSize--;
 		maxHeapify(0);
 
