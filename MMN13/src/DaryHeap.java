@@ -46,7 +46,7 @@ class DaryHeap {
 		}
 
 		int max = heap[1];
-		heap[1] = heap[heapSize];
+		heap[1] = heap[heapSize - 1];
 		heapSize--;
 		maxHeapify(1);
 
@@ -63,8 +63,8 @@ class DaryHeap {
 	 */
 	public void insert(int key) {
 		this.heapSize++; // Increase the heap size
-		heap[heapSize] = -1; // Set the new element with the default key
-		increaseKey(heapSize, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
+		heap[heapSize - 1] = -1; // Set the new element with the default key
+		increaseKey(heapSize - 1, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
 	}
 
 	// 3- INCREASE-KEY
@@ -77,7 +77,7 @@ class DaryHeap {
 	 * @exception IndexOutOfBoundsException when i is not in D-ray-heap
 	 */
 	public void increaseKey(int i, int key) {
-		if (i < 0 || i > this.heapSize) {
+		if (i < 0 || i >= this.heapSize) {
 			throw new IndexOutOfBoundsException("Not a valid index");
 		}
 		if (this.heap[i] < key) {
@@ -118,10 +118,10 @@ class DaryHeap {
 
 		int largest = i;
 
-		// Check if one of i's children is bigger then him and saves the largest one's
+		// Check if one of i's children are bigger then him and saves the largest one's
 		// index
 		for (int j = 0; j < d; j++) {
-			if (kthChild(i, j) <= heapSize && 
+			if (kthChild(i, j) < heapSize && 
 				heap[kthChild(i, j)] > heap[i] && 
 				heap[kthChild(i, j)] > heap[largest]) {
 				largest = kthChild(i, j);
@@ -142,7 +142,7 @@ class DaryHeap {
 	 * Function to build the d-heap
 	 */
 	public void buildMaxHeap() {
-		for (int i = Math.floorDiv(heapSize , d); i > 0; i--) {
+		for (int i = Math.floorDiv(heapSize - 1 , d); i > 0; i--) {
 			maxHeapify(i);
 		}
 	}
@@ -152,10 +152,20 @@ class DaryHeap {
 	 * Function to print heap
 	 */
 	public void printHeap() {
-		System.out.print("\nHeap = ");
-		for (int i = 0; i < heapSize; i++)
-			System.out.print(heap[i] + " ");
-		System.out.println();
+		System.out.println("\nHeap = " + heap[1]);	
+		int heapHeight = Height();
+		int curr = 1;
+		
+		for (int i = 0; i < heapHeight; i++) {
+			for (int j = 0; j < Math.pow(d, i); j++) {
+				for (int k = 0; k < d; k++) {
+					System.out.print(heap[curr] + ", ");
+					curr++;
+				}
+				System.out.print("   ");
+			}
+			System.out.println();
+		}
 	}
 
 	/**
@@ -175,8 +185,8 @@ class DaryHeap {
 	 * @return The value of th k-th child
 	 */
 	private int kthChild(int i, int k) {
-		// return d * i + k;
-		return d * i - d + 1 + k;
+		
+		return (d * i) - d + 1 + k;
 	}
 	
 	/**
@@ -186,6 +196,13 @@ class DaryHeap {
 	 */
 	private int parent(int i) {
 		return Math.floorDiv(i, d);
+	}
+	
+	/**
+	 * Function to get D-ray-heap height
+	 */
+	private int Height() {
+		return Math.floorDiv(Math.log(heapSize - 1), Math.log(d));
 	}
 
 	/**
