@@ -29,10 +29,12 @@ class DaryHeap {
 	// 1- EXTRACT-MAX
 
 	/**			
+	 * Function to Extract the largest value and keep the D-ray as it should be
 	 * 
+	 * @exception NoSuchElementException for empty heap
 	 */
 	public int extractMax() {
-		if (heapSize < 1) {
+		if (isEmpty()) {
 			throw new NoSuchElementException("Empty D-ray");
 		}
 		
