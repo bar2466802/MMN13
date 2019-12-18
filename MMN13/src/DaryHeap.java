@@ -96,7 +96,7 @@ class DaryHeap {
 	 * complexity O(k logkn)
 	 * 
 	 * @param ind - index of element to be deleted
-	 * 
+	 * @return key of deleted item, if heap is empty then raising an error
 	 **/
 	public int delete(int ind) {
 		if (isEmpty())
@@ -104,7 +104,7 @@ class DaryHeap {
 		int keyItem = heap[ind];
 		heap[ind] = heap[heapSize - 1];
 		heapSize--;
-		heapifyDown(ind);
+		maxHeapify(ind);;
 		return keyItem;
 	}
 
