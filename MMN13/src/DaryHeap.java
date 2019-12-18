@@ -63,7 +63,7 @@ class DaryHeap {
 		this.heapSize++; // Increase the heap size
 		/** Percolate up **/
 		heap[heapSize] = x; // Set the new element with the given key
-		heapifyUp(heapSize - 1);// Correct the heap after the new addition
+		maxHeapify(heapSize - 1);// Correct the heap after the new addition
 	}
 
 	// 3- INCREASE-KEY
@@ -94,13 +94,13 @@ class DaryHeap {
 	 * @return key of deleted item, if heap is empty then raising an error
 	 **/
 	public int delete(int ind) {
-		if (isEmpty())
+		if (isEmpty()){
 			throw new NoSuchElementException("Underflow Exception");
+		}			
 		int keyItem = heap[ind];
 		heap[ind] = heap[heapSize - 1];
 		heapSize--;
 		maxHeapify(ind);
-		;
 		return keyItem;
 	}
 
@@ -137,7 +137,7 @@ class DaryHeap {
 	 * Function to build the d-heap
 	 */
 	public void buildMaxHeap() {
-		for (int i = (int) Math.floor((heapSize / d)); i > 0; i--) {
+		for (int i = Math.floorDiv(heapSize , d); i > 0; i--) {
 			maxHeapify(i);
 		}
 	}
@@ -162,6 +162,10 @@ class DaryHeap {
 		// return d * i + k;
 		return d * i - d + 1 + k;
 	}
+	
+	private int parent(int i) {
+		return Math.floorDiv(i, d);
+	}
 
 	/**
 	 * Function heapifyUp
@@ -175,25 +179,6 @@ class DaryHeap {
 			childInd = parent(childInd);
 		}
 		heap[childInd] = tmp;
-	}
-
-	/**
-	 * Function heapifyDown
-	 * 
-	 * @param ind
-	 */
-	private void heapifyDown(int ind) {
-		int child;
-		int tmp = heap[ind];
-		while (kthChild(ind, 1) < heapSize) {
-			child = minChild(ind);
-			if (heap[child] < tmp)
-				heap[ind] = heap[child];
-			else
-				break;
-			ind = child;
-		}
-		heap[ind] = tmp;
 	}
 
 	/**
