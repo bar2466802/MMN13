@@ -60,17 +60,7 @@ class DaryHeap {
 	}
 
 	// 3- INCREASE-KEY
-
-//  INCREASE-KEY(A,i,key)
-//  1: if key < A[i] then
-//  2: error “new key is smaller than current key ”
-//  3: end if
-//  4: A[i] = key
-//  5: while i > 1 and A[P ARENT(i) < A[i] do
-//  6: exchange A[i] with A[P ARENT(i)]
-//  7: i = P ARENT(i)
-//  8: end while
-
+	
 	/**
 	 * Function to insert element calls heapifyUp() once so Time complexity:
 	 * O(logkn).
