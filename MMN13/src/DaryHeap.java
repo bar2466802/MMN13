@@ -146,7 +146,7 @@ class DaryHeap {
 	 * 
 	 * @return True if the heap is empty, false otherwise
 	 */
-	public boolean isEmpty() {
+	private boolean isEmpty() {
 		return heapSize == 0;
 	}
 
@@ -176,13 +176,17 @@ class DaryHeap {
 	 * 
 	 * @param childInd
 	 */
-	private void heapifyUp(int childInd) {
-		int tmp = heap[childInd];
-		while (childInd > 0 && tmp < heap[parent(childInd)]) {
-			heap[childInd] = heap[parent(childInd)];
-			childInd = parent(childInd);
-		}
-		heap[childInd] = tmp;
+	private void heapifyUp(int i) {
+		int tmp;
+		
+		while (i > 0 && heap[i] > heap[parent(i)]) {
+			// Exchange
+			tmp = heap[i];
+			heap[i] = heap[parent(i)];
+			heap[parent(i)] = tmp;
+			
+			i = parent(i);
+		}	
 	}
 
 	/**
