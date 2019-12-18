@@ -1,7 +1,7 @@
 
 /**
  *   Java Program to Implement D-ary-Heap
- *   By Bar & Shaked
+ *   By Bar & Shaked 
  */
 
 import java.util.Scanner;
@@ -71,9 +71,9 @@ class DaryHeap {
 	// 3- INCREASE-KEY
 
 	/**
-	 * Function to increse element 
+	 * Function to increse element
 	 * 
-	 * @param i - the index to be changed
+	 * @param i   - the index to be changed
 	 * @param key - the key to be added
 	 * @exception IndexOutOfBoundsException when i is not in D-ray-heap
 	 */
@@ -100,7 +100,7 @@ class DaryHeap {
 	public int delete(int i) {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException("Underflow Exception");
-		}			
+		}
 		int keyItem = this.heap[i];
 		this.heap[i] = this.heap[this.heapSize - 1];
 		this.heapSize--;
@@ -122,9 +122,8 @@ class DaryHeap {
 		// Check if one of i's children are bigger then him and saves the largest one's
 		// index
 		for (int j = 0; j < d; j++) {
-			if (this.kthChild(i, j) < this.heapSize && 
-				this.heap[this.kthChild(i, j)] > this.heap[i] && 
-				this.heap[this.kthChild(i, j)] > this.heap[largest]) {
+			if (this.kthChild(i, j) < this.heapSize && this.heap[this.kthChild(i, j)] > this.heap[i]
+					&& this.heap[this.kthChild(i, j)] > this.heap[largest]) {
 				largest = this.kthChild(i, j);
 			}
 		}
@@ -143,20 +142,19 @@ class DaryHeap {
 	 * Function to build the d-heap
 	 */
 	public void buildMaxHeap() {
-		for (int i = Math.floorDiv(this.heapSize - 1 , this.d); i > 0; i--) {
+		for (int i = Math.floorDiv(this.heapSize - 1, this.d); i > 0; i--) {
 			this.maxHeapify(i);
 		}
 	}
-	
 
 	/**
 	 * Function to print heap
 	 */
 	public void printHeap() {
-		System.out.println("\nHeap = " + this.heap[0]);	
+		System.out.println("\nHeap = " + this.heap[0]);
 		int heapHeight = this.Height();
 		int curr = 1;
-		
+
 		for (int i = 0; i < heapHeight; i++) {
 			for (int j = 0; j < Math.pow(this.d, i); j++) {
 				for (int k = 0; k < this.d; k++) {
@@ -186,24 +184,25 @@ class DaryHeap {
 	 * @return The value of th k-th child
 	 */
 	private int kthChild(int i, int k) {
-		
+
 		return (this.d * i) - this.d + 1 + k;
 	}
-	
+
 	/**
 	 * Get the index of the parent element
+	 * 
 	 * @param index the index of the son element
 	 * @return the index of the parent of the given element
 	 */
 	private int parent(int i) {
 		return Math.floorDiv(i, this.d);
 	}
-	
+
 	/**
 	 * Function to get D-ray-heap height
 	 */
 	private int Height() {
-		return Math.floorDiv((int)Math.log(this.heapSize - 1), (int)Math.log(this.d));
+		return Math.floorDiv((int) Math.log(this.heapSize - 1), (int) Math.log(this.d));
 	}
 
 	/**
@@ -213,14 +212,14 @@ class DaryHeap {
 	 */
 	private void heapifyUp(int i) {
 		int tmp;
-		
+
 		while (i > 0 && this.heap[i] > this.heap[this.parent(i)]) {
 			// Exchange
 			tmp = this.heap[i];
 			this.heap[i] = this.heap[this.parent(i)];
 			this.heap[this.parent(i)] = tmp;
-			
+
 			i = this.parent(i);
-		}	
+		}
 	}
 }
