@@ -24,11 +24,12 @@ class DaryHeap {
 	 * @param capacity
 	 * @param numChild
 	 */
-	public DaryHeap(int capacity, int numChild) {
-		heapSize = 0;
-		d = numChild;
-		heap = new int[capacity + 1];
-		Arrays.fill(heap, -1);
+	public DaryHeap(int[] arr, int heapSize, int d) {
+		this.heapSize = 0;
+		this.d = d;
+		this.heap = new int[heapSize];
+		this.heap = arr;
+		this.buildMaxHeap();
 	}
 
 	// Actual Answers
@@ -41,14 +42,14 @@ class DaryHeap {
 	 * @exception NoSuchElementException for empty heap
 	 */
 	public int extractMax() {
-		if (isEmpty()) {
+		if (this.isEmpty()) {
 			throw new NoSuchElementException("Empty D-ray");
 		}
 
 		int max = heap[0];
-		heap[0] = heap[heapSize - 1];
-		heapSize--;
-		maxHeapify(0);
+		this.heap[0] = heap[heapSize - 1];
+		this.heapSize--;
+		this.maxHeapify(0);
 
 		return max;
 	}
@@ -63,8 +64,8 @@ class DaryHeap {
 	 */
 	public void insert(int key) {
 		this.heapSize++; // Increase the heap size
-		heap[heapSize - 1] = -999; // Set the new element with the default key
-		increaseKey(heapSize - 1, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
+		this.heap[this.heapSize - 1] = -999; // Set the new element with the default key
+		this.increaseKey(this.heapSize - 1, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
 	}
 
 	// 3- INCREASE-KEY
@@ -82,7 +83,7 @@ class DaryHeap {
 		}
 		if (this.heap[i] < key) {
 			this.heap[i] = key;
-			heapifyUp(i);// Correct the heap after the key update
+			this.heapifyUp(i);// Correct the heap after the key update
 		}
 	}
 
@@ -97,13 +98,13 @@ class DaryHeap {
 	 * @exception NoSuchElementException if heap is empty then raising an error
 	 **/
 	public int delete(int i) {
-		if (isEmpty()) {
+		if (this.isEmpty()) {
 			throw new NoSuchElementException("Underflow Exception");
 		}			
-		int keyItem = heap[i];
-		heap[i] = heap[heapSize - 1];
-		heapSize--;
-		maxHeapify(i);
+		int keyItem = this.heap[i];
+		this.heap[i] = this.heap[this.heapSize - 1];
+		this.heapSize--;
+		this.maxHeapify(i);
 		return keyItem;
 	}
 
@@ -121,20 +122,20 @@ class DaryHeap {
 		// Check if one of i's children are bigger then him and saves the largest one's
 		// index
 		for (int j = 0; j < d; j++) {
-			if (kthChild(i, j) < heapSize && 
-				heap[kthChild(i, j)] > heap[i] && 
-				heap[kthChild(i, j)] > heap[largest]) {
-				largest = kthChild(i, j);
+			if (this.kthChild(i, j) < this.heapSize && 
+				this.heap[this.kthChild(i, j)] > this.heap[i] && 
+				this.heap[this.kthChild(i, j)] > this.heap[largest]) {
+				largest = this.kthChild(i, j);
 			}
 		}
 
 		if (largest != i) {
 			// exchange
-			int temp = heap[i];
-			heap[i] = heap[largest];
-			heap[largest] = temp;
+			int temp = this.heap[i];
+			this.heap[i] = this.heap[largest];
+			this.heap[largest] = temp;
 
-			maxHeapify(largest);
+			this.maxHeapify(largest);
 		}
 	}
 
@@ -142,8 +143,8 @@ class DaryHeap {
 	 * Function to build the d-heap
 	 */
 	public void buildMaxHeap() {
-		for (int i = Math.floorDiv(heapSize - 1 , d); i > 0; i--) {
-			maxHeapify(i);
+		for (int i = Math.floorDiv(this.heapSize - 1 , this.d); i > 0; i--) {
+			this.maxHeapify(i);
 		}
 	}
 	
@@ -153,13 +154,13 @@ class DaryHeap {
 	 */
 	public void printHeap() {
 		System.out.println("\nHeap = " + heap[0]);	
-		int heapHeight = Height();
+		int heapHeight = this.Height();
 		int curr = 1;
 		
 		for (int i = 0; i < heapHeight; i++) {
-			for (int j = 0; j < Math.pow(d, i); j++) {
+			for (int j = 0; j < Math.pow(this.d, i); j++) {
 				for (int k = 0; k < d; k++) {
-					System.out.print(heap[curr] + ", ");
+					System.out.print(this.heap[curr] + ", ");
 					curr++;
 				}
 				System.out.print("   ");
@@ -174,7 +175,7 @@ class DaryHeap {
 	 * @return True if the heap is empty, false otherwise
 	 */
 	private boolean isEmpty() {
-		return heapSize == 0;
+		return this.heapSize == 0;
 	}
 
 	/**
@@ -186,7 +187,7 @@ class DaryHeap {
 	 */
 	private int kthChild(int i, int k) {
 		
-		return (d * i) - d + 1 + k;
+		return (this.d * i) - this.d + 1 + k;
 	}
 	
 	/**
@@ -195,14 +196,14 @@ class DaryHeap {
 	 * @return the index of the parent of the given element
 	 */
 	private int parent(int i) {
-		return Math.floorDiv(i, d);
+		return Math.floorDiv(i, this.d);
 	}
 	
 	/**
 	 * Function to get D-ray-heap height
 	 */
 	private int Height() {
-		return Math.floorDiv((int)Math.log(heapSize - 1), (int)Math.log(d));
+		return Math.floorDiv((int)Math.log(this.heapSize - 1), (int)Math.log(this.d));
 	}
 
 	/**
@@ -213,13 +214,13 @@ class DaryHeap {
 	private void heapifyUp(int i) {
 		int tmp;
 		
-		while (i > 0 && heap[i] > heap[parent(i)]) {
+		while (i > 0 && this.heap[i] > this.heap[this.parent(i)]) {
 			// Exchange
-			tmp = heap[i];
-			heap[i] = heap[parent(i)];
-			heap[parent(i)] = tmp;
+			tmp = this.heap[i];
+			this.heap[i] = this.heap[this.parent(i)];
+			this.heap[this.parent(i)] = tmp;
 			
-			i = parent(i);
+			i = this.parent(i);
 		}	
 	}
 }
