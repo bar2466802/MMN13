@@ -131,7 +131,7 @@ class DaryHeap {
 	 * Function to build the d-heap
 	 */
 	public void buildMaxHeap() {
-		for (int i = heapSize / d; i > 0; i--) {
+		for (int i = (int)Math.floor((heapSize / d)); i > 0; i--) {
 			maxHeapify(i);
 		}
 	}
