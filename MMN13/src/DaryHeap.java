@@ -63,7 +63,7 @@ class DaryHeap {
 	 */
 	public void insert(int key) {
 		this.heapSize++; // Increase the heap size
-		heap[heapSize - 1] = -1; // Set the new element with the default key
+		heap[heapSize - 1] = -999; // Set the new element with the default key
 		increaseKey(heapSize - 1, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
 	}
 
