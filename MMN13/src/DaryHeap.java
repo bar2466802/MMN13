@@ -74,7 +74,7 @@ class DaryHeap {
 	 * @param key - the key to be added
 	 */
 	public void increaseKey(int i, int key) {
-		if (index < 0 || index > this.heapSize) {
+		if (i < 0 || i > this.heapSize) {
 			throw new IndexOutOfBoundsException("Not a valid index");
 		}
 		if (this.heap[i] > key) {
@@ -167,7 +167,7 @@ class DaryHeap {
 	 * @param index the index of the son element
 	 * @return the index of the parent of the given element
 	 */
-	private int parent(int index) {
+	private int parent(int i) {
 		return Math.floorDiv(i, d);
 	}
 
