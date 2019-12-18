@@ -163,7 +163,12 @@ class DaryHeap {
 		return d * i - d + 1 + k;
 	}
 	
-	private int parent(int i) {
+	/**
+	 * Get the index of the parent element
+	 * @param index the index of the son element
+	 * @return the index of the parent of the given element
+	 */
+	private int parent(int index) {
 		return Math.floorDiv(i, d);
 	}
 
