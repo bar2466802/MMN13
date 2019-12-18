@@ -16,7 +16,11 @@ class DaryHeap {
 	private int heapSize;
 	private int[] heap;
 
-	/** Constructor */
+	/** Constructor
+	 * 
+	 * @param capacity
+	 * @param numChild
+	 */
 	public DaryHeap(int capacity, int numChild) {
 		heapSize = 0;
 		d = numChild;
