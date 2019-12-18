@@ -28,6 +28,9 @@ class DaryHeap {
 
 	// 1- EXTRACT-MAX
 
+	/**			
+	 * 
+	 */
 	public int extractMax() {
 		return 1;
 	}
@@ -99,6 +102,33 @@ class DaryHeap {
 	// Utils
 
 	/**
+	 * Function that makes the D-ary orderd from i down
+	 * 
+	 * @param i This is the index from it the D-ary will be sorted
+	 */
+	public void maxHeapify(int i) {
+		
+		private int largest = i;
+		 
+		// Check if one of i's children is bigger then him and saves the largest one's index
+		for (int j = 0; j < children.length; j++) {	
+			if (kthChild(i, j) <= heapSize && heap[kthChild(i, j)] > heap[i]) {
+				largest = heap[kthChild(i, j)];
+			}
+		}
+		
+		if (largest != i) {
+			// exchange
+			private int temp = heap[i];
+			heap[i] = heap[largest];
+			heap[largest] = temp;
+			
+			maxHeapify(largest);
+		}
+		
+	}
+
+	/**
 	 * Function to check if heap is empty
 	 * 
 	 * @return True if the heap is empty, false otherwise
@@ -134,12 +164,13 @@ class DaryHeap {
 	/**
 	 * Function to get index of k-th child of i
 	 * 
-	 * @param i
-	 * @param k
-	 * @return
+	 * @param i This is the index of the parent
+	 * @param k This is the index of the Child from right to left
+	 * @return The value of th k-th child
 	 */
 	private int kthChild(int i, int k) {
-		return d * i + k;
+		// return d * i + k;
+		return d * i - d + 1 + k;
 	}
 
 	/** Function to find least element **/
@@ -159,7 +190,10 @@ class DaryHeap {
 		heap[childInd] = tmp;
 	}
 
-	/** Function heapifyDown **/
+	/**
+	 * Function heapifyDown
+	 * 
+	 */
 	private void heapifyDown(int ind) {
 		int child;
 		int tmp = heap[ind];
