@@ -57,30 +57,29 @@ class DaryHeap {
 	 * Function to insert element calls heapifyUp() once so Time complexity:
 	 * O(logkn).
 	 * 
-	 * @param x - the key to be added
+	 * @param key - the key to be added
 	 */
-	public void insert(int x) {
+	public void insert(int key) {
 		this.heapSize++; // Increase the heap size
-		/** Percolate up **/
-		heap[heapSize] = x; // Set the new element with the given key
-		maxHeapify(heapSize - 1);// Correct the heap after the new addition
+		heap[heapSize] = -1; // Set the new element with the default key
+		increaseKey(heapSize, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
 	}
 
 	// 3- INCREASE-KEY
 
 	/**
-	 * Function to insert element calls heapifyUp() once so Time complexity:
-	 * O(logkn).
+	 * Function to increse element 
 	 * 
-	 * @param x - the key to be added
+	 * @param i - the index to be changed
+	 * @param key - the key to be added
 	 */
-	public void increaseKey(int index, int key) {
+	public void increaseKey(int i, int key) {
 		if (index < 0 || index > this.heapSize) {
 			throw new IndexOutOfBoundsException("Not a valid index");
 		}
-		if (this.heap[index] > key) {
-			this.heap[index] = key;
-			heapifyUp(index);// Correct the heap after the key update
+		if (this.heap[i] > key) {
+			this.heap[i] = key;
+			heapifyUp(i);// Correct the heap after the key update
 		}
 	}
 
@@ -93,14 +92,14 @@ class DaryHeap {
 	 * @param ind - index of element to be deleted
 	 * @return key of deleted item, if heap is empty then raising an error
 	 **/
-	public int delete(int ind) {
-		if (isEmpty()){
+	public int delete(int i) {
+		if (isEmpty()) {
 			throw new NoSuchElementException("Underflow Exception");
 		}			
-		int keyItem = heap[ind];
-		heap[ind] = heap[heapSize - 1];
+		int keyItem = heap[i];
+		heap[i] = heap[heapSize - 1];
 		heapSize--;
-		maxHeapify(ind);
+		maxHeapify(i);
 		return keyItem;
 	}
 
