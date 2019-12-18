@@ -45,10 +45,10 @@ class DaryHeap {
 			throw new NoSuchElementException("Empty D-ray");
 		}
 
-		int max = heap[1];
+		int max = heap[0];
 		heap[1] = heap[heapSize - 1];
 		heapSize--;
-		maxHeapify(1);
+		maxHeapify(0);
 
 		return max;
 	}
