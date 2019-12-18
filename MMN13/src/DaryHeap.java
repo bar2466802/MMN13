@@ -111,7 +111,7 @@ class DaryHeap {
 		int largest = i;
 		 
 		// Check if one of i's children is bigger then him and saves the largest one's index
-		for (int j = 0; j < children.length; j++) {	
+		for (int j = 1; j <= d; j++) {	
 			if (kthChild(i, j) <= heapSize && heap[kthChild(i, j)] > heap[i]) {
 				largest = heap[kthChild(i, j)];
 			}
