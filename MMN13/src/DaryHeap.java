@@ -202,7 +202,7 @@ class DaryHeap {
 	 * Function to get D-ray-heap height
 	 */
 	private int Height() {
-		return Math.floorDiv(Math.log(heapSize - 1), Math.log(d));
+		return Math.floorDiv((int)Math.log(heapSize - 1), (int)Math.log(d));
 	}
 
 	/**
