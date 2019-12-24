@@ -19,14 +19,15 @@ public class Driver {
 		System.out.println("1. By entring the elements one by one");
 		System.out.println("2. From a txt file");
 		int option = scan.nextInt();
-		List<Integer> list = null;
+		List<Integer> list = new ArrayList<Integer>();
+		//list = new ArrayList<>();
+		List<String> lines = Collections.emptyList();
 
 		// First - Getting the array from File or Console
 		switch (option) {
 		case 1:
-			System.out.println("Please Enter in heap elements, if you wanna stop enter -999");
-			List<String> lines = Collections.emptyList(); 
-			list = new ArrayList<>();
+			System.out.println("Please Enter in heap elements, if you wanna stop enter -999");			
+			
 			int num = scan.nextInt();
 			while (num != -999) {
 				list.add(num);
@@ -35,14 +36,17 @@ public class Driver {
 			break;
 
 		case 2:
-			list = Collections.emptyList();
+			//list = Collections.emptyList();
 			try {
 				System.out.println("Please Enter the file path:");
 				
 				scan.nextLine(); //throw away the \n not consumed by nextInt()
-				String fileName =  scan.nextLine();//"C:\\Users\\BarM\\Desktop\\1234.txt";//scan.nextLine();
-				
+				String fileName =  scan.nextLine();//"C:\\Users\\BarM\\Desktop\\1234.txt";//scan.nextLine();				
 				lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
+				for(int i = 0 ; i < lines.size() ; i++) {
+					num = Integer.parseInt(lines.get(i));
+					list.add(num);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -61,6 +65,7 @@ public class Driver {
 		}
 
 		// Creates the D-ray-Heap
+		System.out.println("Please enter the d you want, meaning the number of child for each element:");
 		DaryHeap dh = new DaryHeap(drayHeap, scan.nextInt());
 		dh.printHeap();
 
