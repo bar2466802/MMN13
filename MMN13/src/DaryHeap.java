@@ -183,7 +183,11 @@ class DaryHeap {
 	 * @return The value of th k-th child
 	 */
 	private int kthChild(int i, int k) {
-
+		
+		if(i == 0) {
+			return 0;
+		}
+		
 		return (this.d * i) - this.d + 1 + k;
 	}
 
