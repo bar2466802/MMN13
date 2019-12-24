@@ -96,7 +96,7 @@ public class Driver {
 
 				break;
 			case 3:
-				dh.extractMax();
+				System.out.println("The extracted maximum is:" + dh.extractMax());
 
 				break;
 			case 4:
