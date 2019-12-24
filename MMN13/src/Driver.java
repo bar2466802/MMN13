@@ -90,7 +90,7 @@ public class Driver {
 				
 				break;
 			case 2:
-				System.out.println("Please enter the key you want to delete from the d-ray");
+				System.out.println("Please enter the index of the element you want to delete from the d-ray");
 				int keyToDelete = scan.nextInt();
 				dh.delete(keyToDelete);
 
