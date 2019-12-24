@@ -108,7 +108,7 @@ public class Driver {
 			System.out.println();
 		}
 		
-		System.out.println("Goodbye, Bar & Shaked");
+		System.out.println("Goodbye, From Bar & Shaked");
 	}
 
 }
