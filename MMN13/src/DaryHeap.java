@@ -120,7 +120,7 @@ class DaryHeap {
 
 		// Check if one of i's children are bigger then him and saves the largest one's
 		// index
-		for (int j = 1; j <= d; j++) {
+		for (int j = 0; j < d; j++) {
 			if (this.kthChild(i, j) < this.heapSize && this.heap[this.kthChild(i, j)] > this.heap[i]
 					&& this.heap[this.kthChild(i, j)] > this.heap[largest]) {
 				largest = this.kthChild(i, j);
@@ -188,7 +188,7 @@ class DaryHeap {
 			return 0;
 		}
 		
-		return (this.d * i) - this.d + 1 + k;
+		return (this.d * (i + 1)) - this.d + 1 + k;
 	}
 
 	/**
