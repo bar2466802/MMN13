@@ -38,6 +38,7 @@ public class Driver {
 			list = Collections.emptyList();
 			try {
 				System.out.println("Please Enter the file path:");
+				
 				scan.nextLine(); //throw away the \n not consumed by nextInt()
 				String fileName = scan.nextLine();
 				lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
