@@ -21,8 +21,8 @@ class DaryHeap {
 	/**
 	 * Constructor
 	 * 
-	 * @param capacity
-	 * @param numChild
+	 * @param arr - This is the keys to insert to the empty heap
+	 * @param d - This is the d for the D-ary heap
 	 */
 	public DaryHeap(int[] arr, int d) {
 		this.heapSize = arr.length;
@@ -37,34 +37,25 @@ class DaryHeap {
 
 	/**
 	 * Function to Extract the largest value and keep the D-ray as it should be
+	 * same as deleting the first key which is the maximum
 	 * 
 	 * @exception NoSuchElementException for empty heap
 	 */
 	public int extractMax() {
-		if (this.isEmpty()) {
-			throw new NoSuchElementException("Empty D-ray");
-		}
-
-		int max = this.heap[0];
-		this.heap[0] = this.heap[this.heapSize - 1];
-		this.heapSize--;
-		this.maxHeapify(0);
-
-		return max;
+		return delete(0);
 	}
 
 	// 2- INSERT
 
 	/**
-	 * Function to insert element calls heapifyUp() once so Time complexity:
-	 * O(logkn).
+	 * Function to insert an element
 	 * 
 	 * @param key - the key to be added
 	 */
 	public void insert(int key) {
 		this.heapSize++; // Increase the heap size
 		
-		// We need a new array
+		// We need a new array 'cause of new length
 		int[] temp = new int[this.heapSize];
 		for (int i = 0; i < this.heap.length; i++) {
 			temp[i] = this.heap[i];
@@ -72,13 +63,13 @@ class DaryHeap {
 		this.heap = temp;
 		
 		this.heap[this.heapSize - 1] = -999; // Set the new element with the default key
-		this.increaseKey(this.heapSize - 1, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
+		this.increaseKey(this.heapSize - 1, key); // Call increaseKey() to insert the new key without damaging the D-ray
 	}
 
 	// 3- INCREASE-KEY
 
 	/**
-	 * Function to increse element
+	 * Function to increase element
 	 * 
 	 * @param i   - the index to be changed
 	 * @param key - the key to be added
@@ -97,8 +88,7 @@ class DaryHeap {
 	// 4- DELETE
 
 	/**
-	 * Function to delete element at an index calls heapifyDown() once, its
-	 * complexity O(k logkn)
+	 * Function to delete element at an index
 	 * 
 	 * @param i - index of element to be deleted
 	 * @return key of deleted item,
@@ -108,25 +98,26 @@ class DaryHeap {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException("Underflow Exception");
 		}
-		int keyItem = this.heap[i];
+		int deletedItem = this.heap[i];
 		this.heap[i] = this.heap[this.heapSize - 1];
+		this.heap[this.heapSize - 1] = -999; // so this will stay last
 		this.heapSize--;
-		this.maxHeapify(i);	
+		this.maxHeapify(i);	// Fix D-ray after deletion
 		
-		// We need a new array
+		// We need a new array 'cause of new length
 		int[] temp = new int[this.heapSize];
 		for (int j = 0; j < this.heap.length - 1; j++) {
 			temp[j] = this.heap[j];
 		}
 		this.heap = temp;
 		
-		return keyItem;
+		return deletedItem;
 	}
 
 	// Utils
 
 	/**
-	 * Function that makes the D-ary orderd from i down
+	 * Function that makes the D-ary ordered from i down
 	 * 
 	 * @param i This is the index from it the D-ary will be sorted
 	 */
@@ -201,7 +192,6 @@ class DaryHeap {
 	 * @return The value of th k-th child
 	 */
 	private int kthChild(int i, int k) {
-		
 		return (this.d * (i + 1)) - this.d + 1 + k;
 	}
 

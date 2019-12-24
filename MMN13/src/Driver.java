@@ -9,7 +9,6 @@ import java.io.*;
 public class Driver {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		System.out.println("D ary Heap Test\n\n");
 
@@ -20,14 +19,13 @@ public class Driver {
 		System.out.println("2. From a txt file");
 		int option = scan.nextInt();
 		List<Integer> list = new ArrayList<Integer>();
-		//list = new ArrayList<>();
 		List<String> lines = Collections.emptyList();
 
 		// First - Getting the array from File or Console
 		switch (option) {
 		case 1:
-			System.out.println("Please Enter in heap elements, if you wanna stop enter -999");			
-			
+			System.out.println("Please Enter in heap elements, to stop enter -999");
+
 			int num = scan.nextInt();
 			while (num != -999) {
 				list.add(num);
@@ -36,14 +34,14 @@ public class Driver {
 			break;
 
 		case 2:
-			//list = Collections.emptyList();
+			// list = Collections.emptyList();
 			try {
 				System.out.println("Please Enter the file path:");
-				
-				scan.nextLine(); //throw away the \n not consumed by nextInt()
-				String fileName =  scan.nextLine();//"C:\\Users\\BarM\\Desktop\\1234.txt";//scan.nextLine();				
+
+				scan.nextLine(); // throw away the \n not consumed by nextInt()
+				String fileName = scan.nextLine();// "C:\\Users\\BarM\\Desktop\\1234.txt";//scan.nextLine();
 				lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
-				for(int i = 0 ; i < lines.size() ; i++) {
+				for (int i = 0; i < lines.size(); i++) {
 					num = Integer.parseInt(lines.get(i));
 					list.add(num);
 				}
@@ -87,7 +85,7 @@ public class Driver {
 				System.out.println("Please enter the key you want to insert to the d-ray");
 				int keyToInsert = scan.nextInt();
 				dh.insert(keyToInsert);
-				
+
 				break;
 			case 2:
 				System.out.println("Please enter the index of the element you want to delete from the d-ray");
@@ -96,7 +94,7 @@ public class Driver {
 
 				break;
 			case 3:
-				System.out.println("The extracted maximum is:" + dh.extractMax());
+				System.out.println("The extracted maximum is: " + dh.extractMax());
 
 				break;
 			case 4:
@@ -106,9 +104,11 @@ public class Driver {
 			default:
 				break;
 			}
-			
+
 			System.out.println();
 		}
+		
+		System.out.println("Goodbye, Bar & Shaked");
 	}
 
 }
