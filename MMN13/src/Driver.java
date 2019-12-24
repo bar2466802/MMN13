@@ -21,8 +21,9 @@ public class Driver {
 		int option = scan.nextInt();
 		List<Integer> list;
 		
-		// By console
-		if (option == 1) {
+		// First - Getting the array from File or Console
+		switch (option) {
+		case 1:
 			System.out.println("Please Enter in heap elements, if you wanna stop enter -999");
 			list = new ArrayList<>();
 			int num = scan.nextInt();
@@ -30,9 +31,9 @@ public class Driver {
 				list.add(num);
 				num = scan.nextInt();
 			}
-		}
-		// By file
-		else if (option == 2) {
+			break;
+			
+		case 2:
 			list = Collections.emptyList();
 			try {
 				System.out.println("Please Enter the file path:");
@@ -42,9 +43,13 @@ public class Driver {
 			catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+			break;
+
+		default:
+			break;
+		};
 		
-		// Convert List to Array
+		// Then Convert List to Array
 		int heapSize = list.size();
 		int[] drayHeap = new int[heapSize];
 		
@@ -56,12 +61,27 @@ public class Driver {
 		DaryHeap dh = new DaryHeap(drayHeap, scan.nextInt());
 		dh.printHeap();
 		
-		// What do you want to do? - print the D-ray-heap after each action
+		// Now - What do you want to do? - print the D-ray-heap after each action
 		System.out.println("What do you want to do?");
 		System.out.println("Please select the option to by entering the option number");
 		System.out.println("1. Insert new key");
 		System.out.println("2. Delete existing key");
 		System.out.println("3. Extract the larget number");
+		option = scan.nextInt();
+		
+		switch (option) {
+		case 1:
+			System.out.println("Please enter the key you want to insert to the d-ray");
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+		default:
+			break;
+		};
 	}
 
 }
