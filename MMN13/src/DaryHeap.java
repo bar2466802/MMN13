@@ -63,6 +63,14 @@ class DaryHeap {
 	 */
 	public void insert(int key) {
 		this.heapSize++; // Increase the heap size
+		
+		// We need a new array
+		int[] temp = new int[this.heapSize];
+		for (int i = 0; i < this.heap.length; i++) {
+			temp[i] = this.heap[i];
+		}
+		this.heap = temp;
+		
 		this.heap[this.heapSize - 1] = -999; // Set the new element with the default key
 		this.increaseKey(this.heapSize - 1, key); // Call increaseKey() to inset the new key wothout damaging the D-ray
 	}
@@ -103,7 +111,15 @@ class DaryHeap {
 		int keyItem = this.heap[i];
 		this.heap[i] = this.heap[this.heapSize - 1];
 		this.heapSize--;
-		this.maxHeapify(i);
+		this.maxHeapify(i);	
+		
+		// We need a new array
+		int[] temp = new int[this.heapSize];
+		for (int j = 0; j < this.heap.length - 1; j++) {
+			temp[j] = this.heap[j];
+		}
+		this.heap = temp;
+		
 		return keyItem;
 	}
 
