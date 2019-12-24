@@ -184,10 +184,6 @@ class DaryHeap {
 	 */
 	private int kthChild(int i, int k) {
 		
-		if(i == 0) {
-			return 0;
-		}
-		
 		return (this.d * (i + 1)) - this.d + 1 + k;
 	}
 
