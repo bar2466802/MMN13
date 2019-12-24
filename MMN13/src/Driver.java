@@ -19,7 +19,7 @@ public class Driver {
 		System.out.println("1. By entring the elements one by one");
 		System.out.println("2. From a txt file");
 		int option = scan.nextInt();
-		List<Integer> list;
+		List<Integer> list = null;
 
 		// First - Getting the array from File or Console
 		switch (option) {
@@ -40,7 +40,8 @@ public class Driver {
 				System.out.println("Please Enter the file path:");
 				
 				scan.nextLine(); //throw away the \n not consumed by nextInt()
-				String fileName = scan.nextLine();
+				String fileName =  scan.nextLine();//"C:\\Users\\BarM\\Desktop\\1234.txt";//scan.nextLine();
+				
 				lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
 			} catch (IOException e) {
 				e.printStackTrace();
