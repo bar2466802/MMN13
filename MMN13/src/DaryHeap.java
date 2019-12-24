@@ -37,7 +37,7 @@ class DaryHeap {
 
 	/**
 	 * Function to Extract the largest value and keep the D-ray as it should be
-	 * same as deleting the first key which is the maximum
+	 * using delete() - same as deleting the first key which is the maximum
 	 * 
 	 * @exception NoSuchElementException for empty heap
 	 */
@@ -198,7 +198,7 @@ class DaryHeap {
 	/**
 	 * Get the index of the parent element
 	 * 
-	 * @param index the index of the son element
+	 * @param i the index of the son element
 	 * @return the index of the parent of the given element
 	 */
 	private int parent(int i) {
