@@ -47,7 +47,6 @@ public class Driver {
 		default:
 			break;
 		}
-		;
 
 		// Then Convert List to Array
 		int heapSize = list.size();
@@ -64,13 +63,14 @@ public class Driver {
 		// Now - What do you want to do? - print the D-ray-heap after each action
 		option = 0;
 
-		while (option != 4) {
+		while (option != 5) {
 			System.out.println("---What do you want to do?---");
 			System.out.println("Please select the option to by entering the option number");
 			System.out.println("1. Insert new key");
 			System.out.println("2. Delete existing key");
 			System.out.println("3. Extract the larget number");
-			System.out.println("4. Exit");
+			System.out.println("4. Print the D-ray heap");
+			System.out.println("5. Exit");
 			option = scan.nextInt();
 
 			switch (option) {
@@ -90,11 +90,14 @@ public class Driver {
 				dh.extractMax();
 
 				break;
+			case 4:
+				dh.printHeap();
+
+				break;
 			default:
 				break;
-			};
+			}
 			
-			dh.printHeap();
 			System.out.println();
 		}
 	}
