@@ -158,24 +158,26 @@ class DaryHeap {
 	 */
 	public void printHeap() {
 		if (this.isEmpty()) {
-			throw new NoSuchElementException("Underflow Exception");
+			System.out.print("This heap is empty");
 		}
-		System.out.println("\nHeap = \n" + this.heap[0]);
-		int heapHeight = this.Height();
-		int curr = 1;
+		else {
+			System.out.println("\nHeap = \n" + this.heap[0]);
+			int heapHeight = this.Height();
+			int curr = 1;
 
-		for (int i = 0; i < heapHeight; i++) {
-			for (int j = 0; j < Math.pow(this.d, i); j++) {
-				for (int k = 0; k < this.d ; k++) {
-					if(curr < heapSize) {
-						System.out.print(this.heap[curr] + ", ");
-					}					
-					curr++;
+			for (int i = 0; i < heapHeight; i++) {
+				for (int j = 0; j < Math.pow(this.d, i); j++) {
+					for (int k = 0; k < this.d ; k++) {
+						if(curr < heapSize) {
+							System.out.print(this.heap[curr] + ", ");
+						}					
+						curr++;
+					}
+					System.out.print("   ");
 				}
-				System.out.print("   ");
+				System.out.println();
 			}
-			System.out.println();
-		}
+		}		
 	}
 	
 	private static void printWhitespaces(int count) {
