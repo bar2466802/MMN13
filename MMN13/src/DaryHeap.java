@@ -97,8 +97,7 @@ class DaryHeap {
 	public int delete(int i) {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException("Underflow Exception");
-		}
-		System.out.println("Please note that the first index is 0");
+		}		
 		int deletedItem = this.heap[i];
 		this.heap[i] = this.heap[this.heapSize - 1];
 		this.heap[this.heapSize - 1] = -999; // so this will stay last
