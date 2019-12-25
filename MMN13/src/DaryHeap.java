@@ -165,7 +165,7 @@ class DaryHeap {
 			int heapHeight = this.Height();
 			int curr = 1;
 
-			for (int i = 0; i < heapHeight; i++) {
+			for (int i = 0; i <= heapHeight; i++) {
 				for (int j = 0; j < Math.pow(this.d, i); j++) {
 					for (int k = 0; k < this.d ; k++) {
 						if(curr < heapSize) {
