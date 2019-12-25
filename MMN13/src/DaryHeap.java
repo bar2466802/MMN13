@@ -157,7 +157,10 @@ class DaryHeap {
 	 * Function to print heap
 	 */
 	public void printHeap() {
-		System.out.println("\nHeap = " + this.heap[0]);
+		if (this.isEmpty()) {
+			throw new NoSuchElementException("Underflow Exception");
+		}
+		System.out.println("\nHeap = \n" + this.heap[0]);
 		int heapHeight = this.Height();
 		int curr = 1;
 
@@ -174,6 +177,11 @@ class DaryHeap {
 			System.out.println();
 		}
 	}
+	
+	private static void printWhitespaces(int count) {
+        for (int i = 0; i < count; i++)
+            System.out.print(" ");
+    }
 
 	/**
 	 * Function to check if heap is empty
